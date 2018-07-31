@@ -1,0 +1,411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{27C122C6-8A83-490F-94A9-76739F755CCC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NTC_Consolidator</RootNamespace>
+    <AssemblyName>NTC_Consolidator</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.BulkInsert, Version=6.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.BulkInsert-ef6-ext.6.0.3.1\lib\net45\EntityFramework.BulkInsert.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.MappingAPI, Version=6.1.0.10, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.MappingAPI.6.1.0.10\lib\net45\EntityFramework.MappingAPI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework, Version=1.3.5.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.3.5.0\lib\net45\MetroFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.3.5.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.3.5.0\lib\net45\MetroFramework.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.3.5.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.3.5.0\lib\net45\MetroFramework.Fonts.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Interfaces\IConsolidator.cs" />
+    <Compile Include="Core\Interfaces\IExchangeRate.cs" />
+    <Compile Include="Core\Interfaces\IFilePathRepository.cs" />
+    <Compile Include="Core\Interfaces\ICorrespondingGLRepository.cs" />
+    <Compile Include="Core\Repository\ConsolidatorRepository.cs" />
+    <Compile Include="Core\Repository\CorrespondingGLRepository.cs" />
+    <Compile Include="Core\Repository\ExchangeRateRepository.cs" />
+    <Compile Include="Core\Repository\FilePathRepository.cs" />
+    <Compile Include="Core\Repository\GenericRepository.cs" />
+    <Compile Include="Core\UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="Data\BDOLF_Consolidator.cs">
+      <DependentUpon>NTC_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BDOLF_CorrepondingGL.cs">
+      <DependentUpon>NTC_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BDOLF_ExchangeRate.cs">
+      <DependentUpon>NTC_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BDOLF_PathMaintenance.cs">
+      <DependentUpon>NTC_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\BDOLF_QualifyingCapital.cs">
+      <DependentUpon>NTC_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\NTC_Model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NTC_Model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\NTC_Model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NTC_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data\NTC_Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NTC_Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Helper\CipherDecipher.cs" />
+    <Compile Include="Helper\DataReaderAdapter.cs" />
+    <Compile Include="Helper\ExtensionMethod.cs" />
+    <Compile Include="NTC_Model\AAFModel.cs" />
+    <Compile Include="NTC_Model\CorrespondingGL.cs" />
+    <Compile Include="NTC_Model\ExchangeRate.cs" />
+    <Compile Include="NTC_Model\FilePathMaintenance.cs" />
+    <Compile Include="NTC_Model\QualifyingCapital.cs" />
+    <Compile Include="NTC_View\frmBrowse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NTC_View\frmBrowse.Designer.cs">
+      <DependentUpon>frmBrowse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NTC_View\frmConsolidator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NTC_View\frmConsolidator.Designer.cs">
+      <DependentUpon>frmConsolidator.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NTC_View\frmPathMaintenance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NTC_View\frmPathMaintenance.Designer.cs">
+      <DependentUpon>frmPathMaintenance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NTC_View\frmQualifyingCapitalView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NTC_View\frmQualifyingCapitalView.Designer.cs">
+      <DependentUpon>frmQualifyingCapitalView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NTC_View\frmExchangeRateView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NTC_View\frmExchangeRateView.Designer.cs">
+      <DependentUpon>frmExchangeRateView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NTC_View\frmUnderLitigation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NTC_View\frmUnderLitigation.Designer.cs">
+      <DependentUpon>frmUnderLitigation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="NTC_View\frmCorrespondingGL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NTC_View\frmCorrespondingGL.Designer.cs">
+      <DependentUpon>frmCorrespondingGL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NTC_View\frmExchangeRate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NTC_View\frmExchangeRate.Designer.cs">
+      <DependentUpon>frmExchangeRate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NTC_View\frmQualifyingCapital.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NTC_View\frmQualifyingCapital.Designer.cs">
+      <DependentUpon>frmQualifyingCapital.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="NTC_View\frmBrowse.resx">
+      <DependentUpon>frmBrowse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NTC_View\frmConsolidator.resx">
+      <DependentUpon>frmConsolidator.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NTC_View\frmPathMaintenance.resx">
+      <DependentUpon>frmPathMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NTC_View\frmQualifyingCapitalView.resx">
+      <DependentUpon>frmQualifyingCapitalView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NTC_View\frmExchangeRateView.resx">
+      <DependentUpon>frmExchangeRateView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NTC_View\frmUnderLitigation.resx">
+      <DependentUpon>frmUnderLitigation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="NTC_View\frmCorrespondingGL.resx">
+      <DependentUpon>frmCorrespondingGL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NTC_View\frmExchangeRate.resx">
+      <DependentUpon>frmExchangeRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NTC_View\frmQualifyingCapital.resx">
+      <DependentUpon>frmQualifyingCapital.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Data\NTC_Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>NTC_Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Data\NTC_Model.edmx.diagram">
+      <DependentUpon>NTC_Model.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sync.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Busy.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Delete.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Edit.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Error.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\export.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Import.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Info.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Merge.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Oxygen-Icons.org-Oxygen-Actions-edit-cut.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Settings1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Settings2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Settings3.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Settings4.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Success.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Success2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Undo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Upload.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Warning.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Warning2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GIF.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\Spinner1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\Spinner2.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\Spinner3.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\Spinner4.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\Spinner5.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\Spinner6.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="gif\Spinner7.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_preloadermedium.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lg.discuss-ellipsis-preloader.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mediumBar.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PEPloading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preloader1.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ring.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\spinner-gif-transparent-background-13.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\untitled-3.gif" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Data\NTC_Model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NTC_Model.edmx</DependentUpon>
+      <LastGenOutput>NTC_Model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Data\NTC_Model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>NTC_Model.edmx</DependentUpon>
+      <LastGenOutput>NTC_Model.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
